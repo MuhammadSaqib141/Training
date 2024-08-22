@@ -11,9 +11,24 @@ reverse() {
     done
 }
 
-read -p "Enter string to check for palindrome: " value
+isvalid() {
+    if [ "$length" -gt 1 ]; then
+        return 0  # Valid input
+    else
+        return 1  # Invalid input
+    fi
+}
 
-length=${#value}
+while true; do
+    read -p "Enter string to check for palindrome: " value
+    length=${#value}  # Update length after new input
+
+    if isvalid; then
+        break
+    else
+        echo " Please enter again valid input."
+    fi
+done
 
 echo "Length is $length"
 
