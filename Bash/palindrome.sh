@@ -12,7 +12,7 @@ reverse() {
 }
 
 isvalid() {
-    if [ "$length" -gt 1 ]; then
+    if [ "$length" -gt 1 && $value =~ [^a-zA-Z]  ]; then
         return 0  # Valid input
     else
         return 1  # Invalid input
