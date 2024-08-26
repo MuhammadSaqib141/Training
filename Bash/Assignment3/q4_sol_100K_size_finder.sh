@@ -1,3 +1,39 @@
+#!/bin/bash
+
+SEARCH_DIR="/home/muhammad"
+LOGFILE="/home/muhammad/deleted_files.log"
+declare -a files
+
+# Function to find and list files larger than 100K
+list_files() {
+    file_list=$(find "$SEARCH_DIR" -type f -size +100k)
+    counter=1
+
+    echo "Listing files larger than 100K:"
+    while IFS= read -r file; do
+        echo "$counter: $file"
+        files[$counter]="$file"
+        ((counter++))
+    done <<< "$file_list"
+
+    echo "List completed."
+}
+
+# Function to delete a selected file
+delete_file() {
+    local selected_file="$1"
+    rm "$selected_file"
+    echo "Deleted: $selected_file at $(date)" >> "$LOGFILE"
+    echo "File deleted."
+}
+
+# Function to compress a selected file
+compress_file() {
+    local selected_file="$1"
+    gzip -c "$selected_file" > "$selected_file.gz"
+    echo "File compressed to $selected_file.gz."
+}
+
 # Main loop for user interaction
 main_loop() {
     while true; do
@@ -28,8 +64,12 @@ main_loop() {
                 compress_file "$selected_file"
                 ;;
             *)
-                echo "Invalid choice. Please select 1 to delete, 2 to compress."
+                echo "Invalid choice. Please select 1 to delete, 2 to compress, or 'q' to quit."
                 ;;
         esac
     done
 }
+
+# Execute the functions
+list_files
+main_loop
