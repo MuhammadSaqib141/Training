@@ -15,7 +15,7 @@ for filename in "$@"; do
 
 	    if [ -e "$compressed_file" ]; then
 
-                echo "$compressed_file" "$temp_dir/"
+                mv  "$compressed_file" "$temp_dir/"
 
                 echo "Compressed '$filename' and moved to '$temp_dir/'."
 
