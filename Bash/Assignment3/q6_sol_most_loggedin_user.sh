@@ -1,7 +1,7 @@
 #!/bin/bash
 
-user1="root"
-user2="muhammad"
+user1=$(awk -F: '$3 == 0 {print $1}' /etc/passwd)
+user2=$(whoami)
 
 logins_for_user1=$(tail -n 40 /var/log/auth.log | grep 'opened' | grep "$user1" | wc -l)
 logins_for_user2=$(tail -n 40 /var/log/auth.log | grep 'opened' | grep "$user2" | wc -l)
