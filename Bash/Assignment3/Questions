@@ -1,0 +1,33 @@
+
+Question#1
+Write a script that reads each line of a target file, then writes the line back to stdout, but with an extra blank line following. This has the effect of double-spacing the file.
+
+Question#2
+Archive as a "tarball" (".tar.gz file) all the files in your home directory tree (/home/your-name) that have been modified in the last 24 hours. Hint: use find.
+
+Question#3
+Logged in User Information
+For all logged in users, show their names and the time and date of their last login.
+ Hint: use who, lastlog, and parse /etc/passwd.
+
+Question#4
+Managing Disk Space
+List, one at a time, all files larger than 100K in the /home/username directory tree. Give the user the option to delete or compress the file, then proceed to show the next one. 4
+
+Question#5
+Write to a logfile the names of all deleted files and the deletion times
+Safe Delete
+Write, as a script, a "safe" delete command, srm.sh.
+Filenames passed as command-line arguments to this script are not deleted, but instead gzipped if not already compressed (use file to check), then moved to a /home/username/trash directory.
+5 At invocation, the script checks the "trash" directory for files older than 48 hours and deletes them.
+
+Question#6
+Write a script which will test how many logins you and the 'root' user have and tell
+6 you who has the most (or if equal)
+
+Question#7
+Write a script that takes two integer values as args, I and J. The script should:
+create directories named 1, 2, 1
+• Use touch to put empty files named 1 till J in each of these directories
+•Print an error if a negative value is provided for I or J If any of the files exist, the script should exit with an error. Provide help if one of the args is -h, then exit the script.
+If the third argument is a file, the script should copy this file to all locations instead of creating empty files with touch.
