@@ -32,3 +32,18 @@ for filename in "$@"; do
     fi
 
 done
+
+
+echo "Cleaning up files older than 48 hours in '$temp_dir'..."
+
+
+old_files=$(find "$temp_dir" -type f -mtime +2)
+
+if [ -n "$old_files" ]; then
+    echo "Deleting the following files:"
+    echo "$old_files"
+    find "$temp_dir" -type f -mtime +2 -exec rm -f {} \;
+    echo "Cleanup complete."
+else
+    echo "No files older than 48 hours found in '$temp_dir'."
+fi
