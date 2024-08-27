@@ -13,8 +13,7 @@ while true; do
     echo "9. Issue Book"
     echo "10. Return Book"
     echo "11. View Issued Books"
-    echo "12. View Students with Issued Books"
-    echo "13. View Transaction Logs"
+    echo "12. Report"
     echo "0. Exit"
     echo "Enter your choice:"
     read choice

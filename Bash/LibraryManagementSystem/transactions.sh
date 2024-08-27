@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# File: transactions.sh
 
 BOOKS_FILE="data/books.txt"
 ISSUED_BOOKS_FILE="data/issued_books.txt"
