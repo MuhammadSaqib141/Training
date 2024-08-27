@@ -37,15 +37,6 @@ remove_book() {
     fi
 }
 
-# View all books
-view_all_books() {
-    if [ -f "$BOOKS_FILE" ] && [ -s "$BOOKS_FILE" ]; then
-        echo "Books in the library:"
-        cat "$BOOKS_FILE"
-    else
-        echo "No books found."
-    fi
-}
 
 # Update a book's information
 update_book() {
@@ -73,9 +64,6 @@ case $1 in
         ;;
     update_book)
         update_book
-        ;;
-    view_all_books)
-        view_all_books
         ;;
     *)
         echo "Usage: $0 {add_book|remove_book|update_book}"

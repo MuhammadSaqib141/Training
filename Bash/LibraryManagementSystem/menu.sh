@@ -22,11 +22,11 @@ while true; do
         1) ./books.sh add_book ;;
         2) ./books.sh remove_book ;;
         3) ./books.sh update_book ;;
-        4) ./books.sh view_all_books ;;
+        4) ./display.sh view_all_books ;;
         5) ./students.sh add_student ;;
         6) ./students.sh remove_student ;;
         7) ./students.sh update_student ;;
-        8) ./students.sh view_all_students ;;
+        8) ./display.sh view_all_students ;;
         9) ./transactions.sh issue ;;
         10) ./transactions.sh return ;;
         11) ./display.sh view_issued_books ;;

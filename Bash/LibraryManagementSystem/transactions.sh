@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 BOOKS_FILE="data/books.txt"
 ISSUED_BOOKS_FILE="data/issued_books.txt"
 LOG_FILE="data/transactions.log"

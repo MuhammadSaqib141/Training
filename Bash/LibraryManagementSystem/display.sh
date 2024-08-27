@@ -4,6 +4,27 @@ BOOKS_FILE="data/books.txt"
 STUDENTS_FILE="data/students.txt"
 ISSUED_BOOKS_FILE="data/issued_books.txt"
 
+# View all books
+view_all_books() {
+    if [ -f "$BOOKS_FILE" ] && [ -s "$BOOKS_FILE" ]; then
+        echo "Books in the library:"
+        cat "$BOOKS_FILE"
+    else
+        echo "No books found."
+    fi
+}
+
+# View all students
+view_all_students() {
+    if [ -f "$STUDENTS_FILE" ] && [ -s "$STUDENTS_FILE" ]; then
+        echo "Students in the system:"
+        cat "$STUDENTS_FILE"
+    else
+        echo "No students found."
+    fi
+}
+
+
 # View issued books
 view_issued_books() {
     echo "Issued Books:"
@@ -42,6 +63,12 @@ case $1 in
         ;;
     view_students_with_books)
         view_students_with_books
+        ;;
+    view_all_books)
+        view_all_books
+        ;;
+    view_all_students)
+        view_all_students
         ;;
     *)
         echo "Usage: $0 {view_all_books|view_issued_books|view_students_with_books}"

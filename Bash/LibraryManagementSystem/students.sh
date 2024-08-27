@@ -49,15 +49,6 @@ update_student() {
     fi
 }
 
-# View all students
-view_all_students() {
-    if [ -f "$STUDENTS_FILE" ] && [ -s "$STUDENTS_FILE" ]; then
-        echo "Students in the system:"
-        cat "$STUDENTS_FILE"
-    else
-        echo "No students found."
-    fi
-}
 
 # Main control flow based on the first command-line argument
 case $1 in
@@ -70,9 +61,7 @@ case $1 in
     update_student)
         update_student
         ;;
-    view_all_students)
-        view_all_students
-        ;;
+
     *)
         echo "Usage: $0 {add_student|remove_student|update_student|view_all_students}"
         exit 1
