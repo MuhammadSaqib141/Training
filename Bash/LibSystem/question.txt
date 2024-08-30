@@ -1,0 +1,42 @@
+# Question Requirement & Description
+
+Create a simple Library Management System using a Bash script. The system should support the following operations:
+
+## Add a Book:
+- Prompt the user to enter a book name.
+- Validate the book name to contain only alphabets and spaces.
+- Assign a unique ID to each book.
+- Store the book in a data structure.
+
+## Add a Student:
+- Prompt the user to enter a student name.
+- Validate the student name to contain only alphabets and spaces.
+- Assign a unique ID to each student.
+- Store the student in a data structure.
+
+## Lend a Book:
+- Display a list of available books and registered students.
+- Prompt the user to select a book and a student by their IDs.
+- Mark the book as "booked" and associate it with the student.
+- Handle invalid inputs, such as trying to book a non-existent or already booked book.
+
+## Return a Book:
+- Display a list of currently booked books and their borrowers.
+- Prompt the user to enter the book ID to return it.
+- Mark the book as "available" again.
+
+## Report:
+- Display a report of all currently booked books, showing the book ID, book name, student ID, and student name.
+
+## Exit:
+- Exit the program.
+
+# Requirements
+- Use associative arrays to manage books, students, and bookings.
+- Use regular expressions to validate names.
+- Implement a menu-driven interface for user interaction.
+- Provide clear and informative messages to the user.
+
+# Additional Notes
+- Focus on simplicity and clarity in the code.
+- Avoid using external libraries or tools; stick to basic Bash scripting.
