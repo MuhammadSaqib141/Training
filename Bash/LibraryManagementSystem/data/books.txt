@@ -1,5 +1,0 @@
-1:available
-2:OOP:Mr John:available:issued:2
-3:DSA:Mr 2:available
-4:DCCN:Mr 2:available
-5:PF:Mr 3:available
