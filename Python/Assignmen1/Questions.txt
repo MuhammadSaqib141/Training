@@ -19,3 +19,7 @@ Write a Python code to find how often the substring “Saqib” appears in the g
 str_x = "Saqib is good developer. Saqib is a writer"
 Special Instructions:
   First solve it static then prompt sentense and word by user
+
+Question#4
+Take a number as input from user and make each digit from the number in reverse order.
+For example: If the given integer number is 3745, the output shall be "5 4 7 3", with a space separating the digits.
