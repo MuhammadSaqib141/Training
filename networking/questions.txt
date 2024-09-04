@@ -1,0 +1,32 @@
+1)
+"Given these requirements
+Base address: 142.150.235.0
+Network mask: 255.255.255.224
+Broadcast address: 142.150.235.31
+Reserved Router address: 142.150.235.1
+a) What is the address of the assigned subnetwork and what is the extended network prefix?
+b) Which IP addresses can I use to configure the computers in my lab?
+c) Suppose I wanted to do subdivide the assigned address block into 4 smaller subnetworks of equal size. How large are these networks, and how many IP addresses can I assign in each subnetwork?
+
+
+2) 
+Consider the 128.100.112.0/21 block of IP addresses. This block of addresses must be divided into four subnetworks that have each at least 500 IP addresses.
+
+3)
+ "An organization is assigned a class C network address of 201.35.2.0. It uses a netmask of 255.255.255.192. Using this netmask
+a) How many subnets can be created. What are the address of the assigned subnetworks?
+b) In each subnet, how many IPs each subnet will have
+
+4)
+"An organization is assigned a class C network address of 201.35.2.0. It uses a netmask of 255.255.255.192 to divide this into sub-networks. Which of the following is/are valid host IP addresses?
+A) 201.35.2.129
+B) 201.35.2.191
+C) 201.35.2.255
+
+
+5) 
+"An organization has a class C network address of 201.32.64.0. It uses a subnet mask of 255.255.255.248. Which of the following is NOT a valid broadcast address for any subnetworks?
+a) 201.32.64.135
+b) 201.32.64.240
+c) 201.32.64.207
+d) 201.32.64.231
