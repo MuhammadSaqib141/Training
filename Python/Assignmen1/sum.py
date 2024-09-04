@@ -1,4 +1,3 @@
-'''Write a python code to return the product of two integers only if the product is equal to or lower than 1000. Otherwise, return their sum.'''
 import re 
 
 def sum_or_product(num1, num2):
