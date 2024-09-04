@@ -1,0 +1,92 @@
+Solution to Networking Questions
+1) Addressing and Subnetting
+Given:
+
+Base Address: 142.150.235.0
+Network Mask: 255.255.255.224
+Broadcast Address: 142.150.235.31
+Reserved Router Address: 142.150.235.1
+a) Address of the Assigned Subnetwork and Extended Network Prefix:
+
+Assigned Subnetwork Address: 142.150.235.0
+This is the base address of the subnet, which represents the starting point of the subnet.
+Extended Network Prefix: /27
+The subnet mask 255.255.255.224 corresponds to a /27 prefix. This means the first 27 bits of the IP address are used for the network part.
+b) Usable IP Addresses for Computers:
+
+Usable IP Range: 142.150.235.2 to 142.150.235.30
+The range excludes the network address (142.150.235.0) and the broadcast address (142.150.235.31). The reserved router address (142.150.235.1) is typically used for the default gateway, so usable IPs are from 142.150.235.2 to 142.150.235.30.
+c) Subdividing into 4 Smaller Subnetworks:
+
+Original Network Size: /27 (32 IP addresses)
+New Subnet Size: /29 (8 IP addresses each)
+To divide the /27 network into smaller subnets, each smaller subnet will be /29. A /29 subnet mask allows for 8 IP addresses (including network and broadcast addresses), resulting in 6 usable IP addresses per subnet.
+Number of IPs per New Subnetwork: 8 IP addresses (6 usable)
+Subnet Addresses:
+
+142.150.235.0/29
+Usable IPs: 142.150.235.1 to 142.150.235.6
+142.150.235.8/29
+Usable IPs: 142.150.235.9 to 142.150.235.14
+142.150.235.16/29
+Usable IPs: 142.150.235.17 to 142.150.235.22
+142.150.235.24/29
+Usable IPs: 142.150.235.25 to 142.150.235.30
+2) Subnetting 128.100.112.0/21
+Block Size: /21 (2048 addresses)
+A /21 network provides a total of 2048 IP addresses (2^(32-21) = 2048).
+Required Subnet Size: At least 500 addresses
+To accommodate at least 500 addresses, each subnet needs to be at least /23. A /23 subnet mask allows for 512 addresses.
+Smallest Subnet Size: /23 (512 addresses)
+Subnets:
+
+128.100.112.0/23
+128.100.114.0/23
+128.100.116.0/23
+128.100.118.0/23
+Each /23 subnet contains 512 addresses, sufficient to meet the requirement for at least 500 addresses.
+
+3) Class C Network 201.35.2.0/26
+Given:
+
+Base Address: 201.35.2.0
+Netmask: 255.255.255.192 (/26)
+The /26 subnet mask provides 64 IP addresses per subnet.
+a) Number of Subnets and Addresses:
+
+Number of Subnets: 4
+A /26 subnet allows for 4 subnets when applied to a /24 network.
+Subnet Addresses:
+201.35.2.0/26: Range 201.35.2.0 to 201.35.2.63
+201.35.2.64/26: Range 201.35.2.64 to 201.35.2.127
+201.35.2.128/26: Range 201.35.2.128 to 201.35.2.191
+201.35.2.192/26: Range 201.35.2.192 to 201.35.2.255
+b) IP Addresses per Subnet:
+
+Total IPs per Subnet: 64
+Usable IPs per Subnet: 62
+Each /26 subnet includes 64 IP addresses, but 2 are reserved (network and broadcast), leaving 62 usable IP addresses.
+4) Valid Host IP Addresses
+Given Netmask: 255.255.255.192 (/26)
+
+Valid Host IP Addresses:
+
+A) 201.35.2.129 - Valid
+201.35.2.129 falls within the 201.35.2.128/26 subnet.
+B) 201.35.2.191 - Valid
+201.35.2.191 is also within the 201.35.2.128/26 subnet.
+C) 201.35.2.255 - Not Valid
+201.35.2.255 is the broadcast address for the 201.35.2.192/26 subnet, not a valid host address.
+5) Class C Network 201.32.64.0/29
+Subnet Mask: 255.255.255.248
+
+Invalid Broadcast Address:
+
+a) 201.32.64.135 - Not valid
+201.32.64.135 is outside the range of any /29 subnet within 201.32.64.0.
+b) 201.32.64.240 - Valid
+201.32.64.240 is the broadcast address for the 201.32.64.232/29 subnet.
+c) 201.32.64.207 - Valid
+201.32.64.207 is the broadcast address for the 201.32.64.200/29 subnet.
+d) 201.32.64.231 - Valid
+201.32.64.231 is the broadcast address for the 201.32.64.224/29 subnet.
