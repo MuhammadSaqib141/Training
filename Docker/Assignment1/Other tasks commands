@@ -1,0 +1,37 @@
+docker tag <local-image> <dockerhub-username>/<repository-name>:<tag>
+
+
+# Tag version 1.0
+docker tag my-image-v1 yourusername/myapp:v1.0
+
+# Tag version 2.0
+docker tag my-image-v2 yourusername/myapp:v2.0
+
+# Tag the latest version
+docker tag my-image-latest yourusername/myapp:latest
+
+
+docker push yourusername/myapp:v1.0
+docker push yourusername/myapp:v2.0
+docker push yourusername/myapp:latest
+
+_____________________________________________________________________
+
+# DIND
+    docker run --privileged -d --name dind docker:dind
+
+
+#sharing HOST
+
+# Use the Alpine base image
+FROM alpine:latest
+
+# Install Docker CLI
+RUN apk add --no-cache docker-cli
+
+# Set the entrypoint to a shell (you can modify this based on your needs)
+ENTRYPOINT ["/bin/sh"]
+
+
+docker build -t alpine-docker .
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock alpine-docker
