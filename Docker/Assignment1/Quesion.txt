@@ -1,0 +1,16 @@
+1) Writing your first Dockerfile.
+    Create a dockerfile from alpine base image and install and configure awscli. 
+    The proposal for this container is to run awscli commands, after that it should die. 
+    You must provide the awscli command via entrypoint.
+
+2) Docker registry
+    Tag and push the docker image that you built to DockerHub. Don't forget to docker login first;
+
+3) Docker in docker.
+    Here we want you to know the docker inception capabilities, so please take a look at this page: https://github.com/jpetazzo/dind
+    After you have your first docker blow mind, you can go and test that images to play with docker in docker.
+
+4) Sharing the docker daemon
+    Now that you know the inception of docker we are going to learn, how to share your host daemon to create more dockers, instead of doing docker in docker. 
+    So the task here is to create a dockerfile, from alpine image base, and install the docker in it, but what we want is that when you execute the docker run command, 
+    you share the docker daemon with v option, so after that you can start creating more containers from this containers.
