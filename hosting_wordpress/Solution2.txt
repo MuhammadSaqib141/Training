@@ -1,0 +1,26 @@
+Step 1: Set Up MySQL on VM2
+Install MySQL on VM2 (if not already installed):
+
+
+sudo apt update
+sudo apt install mysql-server -y
+
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+
+
+change bind-address = 0.0.0.0
+
+sudo systemctl restart mysql
+
+
+sudo mysql -u root -p
+
+CREATE DATABASE wordpress_db;
+CREATE USER 'wordpress_user'@'vm1_ip' IDENTIFIED BY 'your_password'; OR CREATE USER 'wordpress_user'@'%' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'vm1_ip';
+FLUSH PRIVILEGES;
+EXIT;
+
+
+sudo ufw allow 3306/tcp
+sudo ufw reload
