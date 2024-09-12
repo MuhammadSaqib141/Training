@@ -11,11 +11,10 @@ def custom_validation(number):
             if not ('0' <= char <= '9'):
                 valid = False
                 break
-        
         if valid:
             return number
         else:
-            input("Please enter a valid number again ")
+            number = input("Please enter a valid number again ")
 
 def reverse_digits(number):
     index = custom_length(number) - 1 
