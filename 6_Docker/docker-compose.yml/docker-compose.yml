@@ -1,0 +1,25 @@
+version: '2.2'
+
+services:
+  redis:
+    image: redis
+    volumes:
+      - testVolume:/
+
+  flask-app:
+    build: 
+      context: ./flask-app
+      dockerfile: dockerfile
+
+    
+  nginx-proxy:
+    build: 
+      context: .nginx-proxy
+      dockerfile: dockerfile
+      
+
+  nginx-static:
+    build: 
+      context: .nginx-static
+      dockerfile: dockerfile
+  
