@@ -1,0 +1,11 @@
+{
+  "defaultAction": "SCMP_ACT_ALLOW",
+  "syscalls": [
+    {
+      "names": [
+        "fork"
+      ],
+      "action": "SCMP_ACT_ERRNO"
+    }
+  ]
+}

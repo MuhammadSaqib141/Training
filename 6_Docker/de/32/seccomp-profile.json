@@ -1,0 +1,46 @@
+{
+  "defaultAction": "SCMP_ACT_ERRNO",
+  "syscalls": [
+    {
+      "names": [
+        "exit",
+        "exit_group",
+        "read",
+        "write",
+        "open",
+        "close",
+        "lseek",
+        "mmap",
+        "mprotect",
+        "munmap",
+        "brk",
+        "ioctl",
+        "getpid",
+        "getppid",
+        "uname",
+        "gettimeofday",
+        "clock_gettime",
+        "getuid",
+        "getgid",
+        "geteuid",
+        "getegid",
+        "set_tid_address",
+        "socket",
+        "connect",
+        "accept",
+        "sendto",
+        "recvfrom",
+        "sendmsg",
+        "recvmsg",
+        "shutdown",
+        "setsockopt",
+        "getsockopt",
+        "fcntl",
+        "dup",
+        "dup2",
+        "pipe"
+      ],
+      "action": "SCMP_ACT_ALLOW"
+    }
+  ]
+}

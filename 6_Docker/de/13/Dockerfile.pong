@@ -1,0 +1,9 @@
+FROM alpine
+
+RUN apk add --no-cache bash netcat-openbsd
+
+COPY pong.sh /pong.sh
+
+RUN chmod +x /pong.sh
+
+CMD ["/bin/bash", "/pong.sh"]

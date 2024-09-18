@@ -1,0 +1,10 @@
+FROM alpine
+
+# Install bash and netcat
+RUN apk add --no-cache bash netcat-openbsd
+
+COPY ping.sh /ping.sh
+
+RUN chmod +x /ping.sh
+
+CMD ["/bin/bash", "/ping.sh"]

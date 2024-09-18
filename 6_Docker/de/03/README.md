@@ -1,0 +1,27 @@
+# Description
+
+What happens when you try this and what is wrong with it? Next, how do you fix it?
+
+## Run instructions
+
+docker build -t testenv1 .
+
+docker run --rm -e ITEM=5 testenv1
+
+
+
+____________________________________________
+FROM ubuntu:latest
+
+ARG APP_VERSION=1.0
+
+ENV APP_VERSION=${APP_VERSION}
+
+RUN echo "App version is $APP_VERSION"
+
+CMD ["bash"]
+_____________________________________________
+
+
+
+

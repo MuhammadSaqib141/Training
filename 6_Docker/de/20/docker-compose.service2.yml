@@ -1,0 +1,34 @@
+# version: '3'
+
+# services:
+#   service2:
+#     image: curlimages/curl
+#     container_name: service2_container
+#     command: sh -c "while true; do curl http://service1_container:80; sleep 10; done"
+#     networks:
+#       - mynetwork
+
+# networks:
+#   mynetwork:
+#     driver: bridge
+
+
+# version: '3'
+
+# services:
+#   service2:
+#     image: curlimages/curl
+#     container_name: service2_container
+#     network_mode: host  # Use host network mode
+#     command: sh -c "while true; do curl http://localhost:8080; sleep 10; done"
+
+# version: '3'
+
+# services:
+#   service2:
+#     image: ubuntu
+#     container_name: ubuntu2
+#     network_mode: host  
+#     command: sh -c "while true; do curl http://localhost:8080; sleep 10; done"
+
+

@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  ping:
+    build:
+      context: .
+      dockerfile: Dockerfile.ping
+    container_name: ping
+    networks:
+      - pingpong-net
+    depends_on:
+      - pong
+
+  pong:
+    build:
+      context: .
+      dockerfile: Dockerfile.pong
+    container_name: pong
+    networks:
+      - pingpong-net
+
+networks:
+  pingpong-net:
+    driver: bridge

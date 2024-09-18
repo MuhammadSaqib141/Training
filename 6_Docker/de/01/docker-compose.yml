@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:3
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  nodeapp:
+    image: node:6.9.1
+    container_name: nodeapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+    working_dir: /usr/src/app
+    environment:
+      MONGO_IP: mongodb
+    command: npm start
+
+  curltest:
+    image: curlimages/curl:latest
+    container_name: curltest
+    depends_on:
+      - nodeapp
+    entrypoint: /bin/sh
+    command: -c "sleep 10 && curl http://nodeapp:3000"
+
+volumes:
+  mongo-data:
+    name: mongo-data
