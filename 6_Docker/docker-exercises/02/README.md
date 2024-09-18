@@ -1,6 +1,3 @@
-Here’s a README to guide users through the Docker environment variable exercise. This README will cover how to complete the `Dockerfile`, build the Docker image, and run the container with and without the environment variable.
-
----
 
 # Environment Variable Exercise
 
@@ -85,10 +82,3 @@ RUN echo $myhost
 - The `Dockerfile` is configured to use the `myhost` environment variable and defaults to `testhost` if not provided.
 - Building and running the Docker container will demonstrate the behavior of environment variables in Docker.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to adjust or expand upon any sections based on additional details or specific instructions for your exercise!
