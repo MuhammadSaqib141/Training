@@ -1,3 +1,11 @@
 FROM busybox
 
-CMD echo $myhost
+ENV myhost=testhost
+
+RUN echo $myhost
+
+#-----------------------
+
+# FROM busybox
+
+# CMD echo $myhost
