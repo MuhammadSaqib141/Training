@@ -1,0 +1,6 @@
+
+docker login
+docker tag <local-image> <dockerhub-username>/<repository-name>:<tag> //syntax
+docker tag my-image-v1 yourusername/myapp:v1.0
+docker push yourusername/myapp:v1.0
+

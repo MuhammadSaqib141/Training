@@ -1,0 +1,14 @@
+docker run -d \
+  --name my-nginx \
+  -p 80:80 \
+  -v /home/muhammad/staticfiles:/usr/share/nginx/html \
+  nginx
+
+
+  docker run --privileged \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /var/lib/docker:/var/lib/docker \
+  --network host \
+  docker:20.10-dind
+
+  docker run --privileged -d --name dind docker:dind
