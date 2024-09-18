@@ -1,35 +1,92 @@
-# Description
+# Dockerized NodeJS Application with MongoDB
 
-This is an exercise where you are going to use an existing NodeJS script that connects to a Mongo database.
+## Overview
 
-The Node script presents a ReST interface on port 3000.
+This project demonstrates how to Dockerize a NodeJS application that connects to a MongoDB database and exposes a ReST API on port 3000. The setup uses Docker Compose to manage multiple containers, including MongoDB, the NodeJS application, and a curl container for testing.
 
-Your goal is to docker-ize this application but you do not need to build an image for it.
+## Directory Structure
 
-Instead all you need to do is run the appropriate containers for it.
+```
+/project-root
+│
+├── server.js
+├── package.json
+├── docker-compose.yml
+└── README.md
+```
 
-However, not building an image means that the script source and associated node_modules directory need to be passed in from the host filesystem in to the container filesystem.
+## Services
 
-docker-compose can be used to start containers without needing a Dockerfile to build them.
-The Mongo (db), Node (web) and curl (test) services can each be defined in the docker-compose.yml file.
+### MongoDB
 
-Regression testing is performed by using curl to access the ReST interface on the node script.
+- **Service Name:** `mongodb`
+- **Image:** `mongo:3`
+- **Container Name:** `mongodb`
+- **Ports:** `27017:27017`
+- **Volumes:** `mongo-data:/data/db`
+- **Description:** MongoDB database for the NodeJS application.
 
-This is also an example of using tools like Mongo and NodeJS without installing them by running them as containers.
+### NodeJS Application
 
-Use images for NodeJS version 6.9.1 and MongoDB version 3.
+- **Service Name:** `nodeapp`
+- **Image:** `node:6.9.1`
+- **Container Name:** `nodeapp`
+- **Ports:** `3000:3000`
+- **Depends On:** `mongodb`
+- **Volumes:** `.:/usr/src/app`
+- **Working Directory:** `/usr/src/app`
+- **Environment Variables:** 
+  - `MONGO_IP` set to `mongodb`
+- **Command:** `npm start`
+- **Description:** NodeJS application that connects to MongoDB and exposes a ReST API.
 
-Your goal is to craft a docker-compose.yml file that can be used to start the db and web services and also test the web service using a simple curl command to demonstrate that the web endpoint can be reached.
-One challenge to be aware of is that the containers must be started in a way that lets the node script connect to the Mongo database and then let curl be used to access the ReST interface.
+### Curl Test
 
-If curl is able to access the node script it will output `Hello World`.
+- **Service Name:** `curltest`
+- **Image:** `curlimages/curl:latest`
+- **Container Name:** `curltest`
+- **Depends On:** `nodeapp`
+- **Entry Point:** `/bin/sh`
+- **Command:** `-c "sleep 10 && curl http://nodeapp:3000"`
+- **Description:** Tests the NodeJS application endpoint by sending a curl request.
 
-As a starting point, the run instructions will show you how to use a node container to install the necessary modules (contained in the package.json file).
+## Getting Started
 
-The rest is up to you.
+To get started with this project, follow these steps:
 
-## Run instructions
+1. **Install NodeJS Modules:**
 
-Install the necessary node modules like this
+   Ensure you have NodeJS modules installed for the application by running:
 
-    docker run -it --rm -w /work -v $(pwd):/work node:6.9.1 npm install
+   ```bash
+   docker run -it --rm -w /work -v $(pwd):/work node:6.9.1 npm install
+   ```
+
+   This command mounts the current directory into a NodeJS container and installs the necessary modules as defined in `package.json`.
+
+2. **Start Containers:**
+
+   Run Docker Compose to start all containers:
+
+   ```bash
+   docker-compose up
+   ```
+
+   This command will start MongoDB, the NodeJS application, and the curl container. It also sets up the necessary network and volumes.
+
+3. **Testing the Application:**
+
+   After the containers are up, the `curltest` container will automatically perform a test by sending a request to the NodeJS application. If everything is working correctly, you should see `Hello World` output from the curl command.
+
+4. **Stopping Containers:**
+
+   To stop and remove the containers, use:
+
+   ```bash
+   docker-compose down
+   ```
+
+## Customizing
+
+- **NodeJS Application:** Modify `server.js` to adjust the application logic or API endpoints.
+- **MongoDB Configuration:** Customize MongoDB settings by adjusting the volume or environment variables as needed.
