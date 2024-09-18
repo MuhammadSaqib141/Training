@@ -1,0 +1,1 @@
+docker run -d nginx // -d is for detached mode
