@@ -2,6 +2,14 @@
 
 Environment variable exercise.
 This `Dockerfile` is incomplete and needs to be modified to produce the results below.
+
+-----------------
+FROM busybox
+
+echo $myhost
+-----------------
+
+
 Hint, you may need to add an environment variable.
 
 ## Run instructions
