@@ -25,7 +25,7 @@ sudo -u www-data sed -i "s/username_here/$DB_USER/" "$WORDPRESS_DIR/wp-config.ph
 sudo -u www-data sed -i "s/password_here/$DB_PASS/" "$WORDPRESS_DIR/wp-config.php"
 
 # Open the configuration file in nano for any further manual edits
-echo "Opening wp-config.php for review..."
-sudo -u www-data nano "$WORDPRESS_DIR/wp-config.php"
+# echo "Opening wp-config.php for review..."
+# sudo -u www-data cat "$WORDPRESS_DIR/wp-config.php"
 
 echo "WordPress configuration completed!"

@@ -1,3 +1,6 @@
+#!/bin/bash
+
+# Update package lists and install necessary packages for WordPress
 sudo apt update
 sudo apt install apache2 \
                  ghostscript \
@@ -12,4 +15,4 @@ sudo apt install apache2 \
                  php-mbstring \
                  php-mysql \
                  php-xml \
-                 php-zip
+                 php-zip -y
