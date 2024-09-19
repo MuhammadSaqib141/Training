@@ -9,4 +9,3 @@ Create a Dockerfile containing only the following (or some variation) and try to
     FROM scratch
 
 
-No image generated is the output
