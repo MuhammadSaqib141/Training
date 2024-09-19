@@ -15,3 +15,5 @@ You can set the timezone in Alpine like this
 
 docker build -t brussels-time .
 docker run --rm brussels-time
+
+# IMPLEMENTED SOLUTION IS IN SAME DIRECTORY IN "DOCKER FILE"
