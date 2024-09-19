@@ -1,5 +1,0 @@
-
-Question 1: Setup on single VM
-Set up a container for Apache2 with PHP (to serve WordPress).
-Set up a MySQL container to handle the database.
-Set up a WordPress container using the Apache2 container to serve the WordPress site.

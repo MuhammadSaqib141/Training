@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo service mysql start
+sudo service mysql status
+
 # Variables for database credentials (you can modify these directly)
 DB_NAME="wordpress"
 DB_USER="wordpress"

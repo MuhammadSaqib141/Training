@@ -1,5 +1,10 @@
 #!/bin/bash
 
+sudo systemctl status apache2
+
+
+
+
 # Define WordPress document root directory
 WORDPRESS_DIR="/srv/www/wordpress"
 
@@ -43,6 +48,7 @@ sudo a2dissite 000-default
 
 # Reload Apache to apply the changes
 echo "Reloading Apache to apply changes..."
+sudo systemctl enable apache2
 sudo service apache2 reload
 
 echo "Apache has been configured for WordPress."
