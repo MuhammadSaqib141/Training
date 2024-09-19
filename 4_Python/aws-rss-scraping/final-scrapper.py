@@ -20,15 +20,6 @@ def fetch_and_extract_api_data():
         print(e)
         sys.exit(1)
 
-
-def fetch_titles_from_items(items):
-    title_list = []
-    for item in items:
-        title = item.find('title').text
-        title_list.append(title)
-    return title_list
-
-
 def parse_feed_items(items):
     parsed_items = []
     for item in items:
