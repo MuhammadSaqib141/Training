@@ -4,3 +4,5 @@ sudo apt install mysql-server -y
 
 # Secure MySQL installation
 sudo mysql_secure_installation
+
+sudo service mysql start
