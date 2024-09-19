@@ -1,6 +1,9 @@
-import requests, sys , schedule , json , xml.etree.ElementTree as ET , time
+import requests
+import sys
+import json
+import xml.etree.ElementTree as ET
 
-JSON_FILE = "./Python/aws-rss-scraping/title.json"
+JSON_FILE = "./4_Python/aws-rss-scraping/title.json"
 
 def fetch_and_extract_api_data():
     try:
@@ -17,6 +20,7 @@ def fetch_and_extract_api_data():
         print(e)
         sys.exit(1)
 
+
 def fetch_titles_from_items(items):
     title_list = []
     for item in items:
@@ -24,11 +28,28 @@ def fetch_titles_from_items(items):
         title_list.append(title)
     return title_list
 
+
+def parse_feed_items(items):
+    parsed_items = []
+    for item in items:
+        entry = {
+            'title': item.find('title').text,
+            'link': item.find('link').text,
+            'pubDate': item.find('pubDate').text,
+            'categories': [category.text for category in item.findall('category')],
+            'guid': item.find('guid').text,
+            'description': item.find('description').text,
+            'content': item.find('{http://purl.org/rss/1.0/modules/content/}encoded').text if item.find('{http://purl.org/rss/1.0/modules/content/}encoded') is not None else 'N/A'
+        }
+        parsed_items.append(entry)
+        print(entry)
+    return parsed_items
+
 def read_json_file():
     try:
         with open(JSON_FILE, "r") as json_file:
             return json.load(json_file) 
-    except:
+    except FileNotFoundError:
         return []
 
 def write_into_file(new_titles): 
@@ -38,17 +59,18 @@ def write_into_file(new_titles):
             existing_titles.append(title)
 
     with open(JSON_FILE, "w") as json_file:
-        json.dump(existing_titles, json_file, indent=4)
+        json.dump(existing_titles, json_file , indent=4 )
 
 def runner():
     items = fetch_and_extract_api_data()
-    new_titles = fetch_titles_from_items(items)
-    write_into_file(new_titles)
+    parsed_items = parse_feed_items(items)
+    
+    write_into_file([item for item in parsed_items])
 
+runner()
 
-# runner()
-schedule.every(30).seconds.do(runner)
+# schedule.every(30).seconds.do(runner)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)

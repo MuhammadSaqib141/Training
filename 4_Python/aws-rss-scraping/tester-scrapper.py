@@ -18,6 +18,13 @@ def fetch_and_extract_api_data():
         sys.exit(1)
 
 def fetch_titles_from_items(items):
+    title_list = []
+    for item in items:
+        title = item.find('title').text
+        title_list.append(title)
+    return title_list
+
+def fetch_titles_from_items(items):
     for item in items:
         item_dict = {}
         title = item.find('title').text
