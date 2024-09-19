@@ -8,18 +8,7 @@ The goal of this exercise is to create the smallest possible Docker container th
 
 ### Step 1: Create a Dockerfile
 
-This Dockerfile uses `alpine:latest`, one of the smallest Linux distributions, and creates a simple directory for data storage.
-
-```Dockerfile
-# Use the smallest base image
-FROM alpine:latest
-
-# Create a directory for data
-RUN mkdir -p /data
-
-# Set the default command to run when the container starts
-CMD ["sh"]
-```
+This Dockerfile in this directory uses `alpine:latest`, one of the smallest Linux distributions, and creates a simple directory for data storage.
 
 ### Step 2: Build the Docker Image
 
