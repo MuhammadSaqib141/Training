@@ -52,25 +52,25 @@ def read_json_file():
     except FileNotFoundError:
         return []
 
-def write_into_file(new_titles): 
-    existing_titles = read_json_file()
-    for title in new_titles:
-        if title not in existing_titles:
-            existing_titles.append(title)
+def write_into_file(items): 
+    existing_items = read_json_file()
+    for item in items:
+        if item['guid'] not in [existed_item['guid'] for existed_item in existing_items]:
+            existing_items.append(item)
 
     with open(JSON_FILE, "w") as json_file:
-        json.dump(existing_titles, json_file , indent=4 )
+        json.dump(existing_items, json_file, indent=4)
+
 
 def runner():
     items = fetch_and_extract_api_data()
     parsed_items = parse_feed_items(items)
-    
     write_into_file([item for item in parsed_items])
 
-# runner()
+runner()
 
-schedule.every(30).seconds.do(runner)
+# schedule.every(30).seconds.do(runner)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
