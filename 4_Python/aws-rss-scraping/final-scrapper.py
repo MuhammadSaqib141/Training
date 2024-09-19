@@ -67,10 +67,10 @@ def runner():
     
     write_into_file([item for item in parsed_items])
 
-runner()
+# runner()
 
-# schedule.every(30).seconds.do(runner)
+schedule.every(30).seconds.do(runner)
 
-# while True:
-#     schedule.run_pending()
-#     time.sleep(1)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
