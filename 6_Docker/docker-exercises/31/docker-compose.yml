@@ -17,4 +17,4 @@ services:
 
 networks:
   my_overlay:
-    driver: overlay
+    driver: bridge
