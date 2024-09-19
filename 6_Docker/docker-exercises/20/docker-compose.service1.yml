@@ -1,17 +1,17 @@
-# version: '3'
+version: '3'
 
-# services:
-#   service1:
-#     image: nginx
-#     container_name: service1_container
-#     ports:
-#       - "8080:80"
-#     networks:
-#       - mynetwork
+services:
+  service1:
+    image: nginx
+    container_name: service1_container
+    ports:
+      - "8080:80"
+    networks:
+      - mynetwork
 
-# networks:
-#   mynetwork:
-#     driver: bridge
+networks:
+  mynetwork:
+    driver: bridge
 
 
 
