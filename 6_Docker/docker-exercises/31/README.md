@@ -10,27 +10,6 @@ The following script checks for existing instances of a specified container and 
 
 #### Script: `script.sh`
 
-```bash
-#!/bin/bash
-IMAGE_NAME="ubuntu"
-CONTAINER_NAME="my_single_container"
-
-CONTAINERS=$(docker ps --filter "ancestor=$IMAGE_NAME" -q)
-
-CONTAINER_COUNT=$(echo "$CONTAINERS" | wc -l)
-
-if [ "$CONTAINER_COUNT" -gt 1 ]; then
-    echo "More than one container found. Stopping and removing all containers."
-    docker rm -f $(echo "$CONTAINERS")
-fi
-
-if [ "$CONTAINER_COUNT" -eq 0 ]; then
-    echo "No containers running. Starting a new one."
-    docker run -d --name $CONTAINER_NAME $IMAGE_NAME sleep infinity
-else
-    echo "Exactly one container is already running from image '$IMAGE_NAME'."
-fi
-```
 
 ### How to Use the Script
 
@@ -52,22 +31,6 @@ fi
 While Docker Compose is typically used for multi-container setups, you can define the desired state of your service using replicas. However, Docker Compose itself does not enforce a strict single instance at the application level. To illustrate the concept, here's a basic example:
 
 #### Docker Compose File: `docker-compose.yml`
-
-```yaml
-version: '3'
-
-services:
-  web:
-    image: nginx
-    deploy:
-      replicas: 1  # Ensure only one instance
-    networks:
-      - my_overlay
-
-networks:
-  my_overlay:
-    driver: bridge
-```
 
 ### How to Use the Docker Compose File
 
