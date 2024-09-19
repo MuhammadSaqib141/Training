@@ -1,36 +1,46 @@
+# Exploring Docker Containers via Tar Archives
 
-# Exploring Docker Image Layers in a Tar Archive
+## Description
 
-## Solution
+Docker containers can be exported to a tar archive, allowing you to examine their layers and metadata files. Exported containers differ slightly from images that have been saved as an archive, providing a unique view of the container's file system.
 
-Docker images can be saved to tar archives, which can then be explored by extracting the layers and metadata files. This guide provides instructions to save a Docker image to a tar archive, list the archive contents, and extract the layers from it.
+In this exercise, we will run an Alpine container with an environment variable `tmpvar` set to `test`, export that container to an archive, and then extract and inspect the contents.
 
 ## Run Instructions
 
-1. **Save the Alpine Image to a Tar Archive:**
+### Step 1: Run an Alpine Container with an Environment Variable
 
-   ```bash
-   docker save -o alpine.tar alpine
-   ```
+Start an Alpine container in the background (`-d` flag) with an environment variable (`-e tmpvar=test`):
 
-   This command saves the Alpine Docker image to a tar archive named `alpine.tar`.
+```bash
+docker run -d --name alpine_test -e tmpvar=test alpine sleep 3600
+```
 
-2. **List the Contents of the Tar Archive:**
+### Step 2: Export the Running Container to a Tar Archive
 
-   To see what’s inside the tar archive, use:
+Export the running container to a tar archive called `alpine_container.tar`:
 
-   ```bash
-   tar tvf alpine.tar
-   ```
+```bash
+docker export alpine_test -o alpine_container.tar
+```
 
-   This command lists all files and directories inside the `alpine.tar` archive.
+### Step 3: List the Contents of the Archive
 
-3. **Extract the Layers from the Tar Archive:**
+You can list the files and structure inside the tar archive using the `tar` command:
 
-   To extract all contents from the tar archive, including the image layers:
+```bash
+tar tvf alpine_container.tar
+```
 
-   ```bash
-   tar xvf alpine.tar
-   ```
+### Step 4: Extract the Contents of the Archive
 
-   This will extract all the layers, metadata files, and other components of the Docker image to your current directory.
+To fully inspect the contents, extract the archive:
+
+```bash
+tar xvf alpine_container.tar
+```
+
+### Observation:
+
+- Compare the contents of the exported container to that of a saved image (as seen in previous exercises). 
+- You should see differences in the file structure and metadata, as exported containers focus on the container's filesystem, while saved images include more image-related metadata and layers.
