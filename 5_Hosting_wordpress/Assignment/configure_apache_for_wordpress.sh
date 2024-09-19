@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sudo systemctl status apache2
-
 
 # Define WordPress document root directory
 WORDPRESS_DIR="/srv/www/wordpress"
