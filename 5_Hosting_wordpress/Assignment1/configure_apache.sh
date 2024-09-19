@@ -21,4 +21,6 @@ EOF'
 # Enable site and rewrite module
 sudo a2ensite wordpress.conf
 sudo a2enmod rewrite
-sudo systemctl restart apache2
+sudo a2dissite 000-default
+sudo service apache2 reload
+
