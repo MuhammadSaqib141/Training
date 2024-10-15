@@ -1,0 +1,10 @@
+# Ignore secrets file
+/8_terraform/1_vnet_creation/secrets
+
+# Ignore Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Ignore Terraform plan files
+*.tfplan
+
