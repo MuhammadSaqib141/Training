@@ -9,5 +9,5 @@
 *.tfplan
 
 #Ignore Terraform binaries
-.terraform/
-
+/8_terraform/1_vnet_creation/.terraform
+/8_terraform/1_vnet_creation/terraform
