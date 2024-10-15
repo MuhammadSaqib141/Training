@@ -9,5 +9,5 @@
 *.tfplan
 
 #Ignore Terraform binaries
-*.terraform/
+.terraform/
 
