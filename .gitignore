@@ -11,3 +11,7 @@
 #Ignore Terraform binaries
 /8_terraform/1_vnet_creation/.terraform
 /8_terraform/1_vnet_creation/terraform
+
+
+# Ignore the .terraform directory
+.terraform/
