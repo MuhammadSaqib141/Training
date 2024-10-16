@@ -1,5 +1,8 @@
-# Ignore secrets file
-/8_terraform/1_vnet_creation/secrets
+# Ignore all secrets files in any directory
+**/secrets
+
+# Ignore all .terraform directories in any directory
+**/.terraform/
 
 # Ignore Terraform state files
 *.tfstate
@@ -8,10 +11,3 @@
 # Ignore Terraform plan files
 *.tfplan
 
-#Ignore Terraform binaries
-/8_terraform/1_vnet_creation/.terraform
-/8_terraform/1_vnet_creation/terraform
-
-
-# Ignore the .terraform directory
-.terraform/
