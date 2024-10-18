@@ -62,18 +62,9 @@ module "networking" {
   virtual_networks        = var.virtual_networks
   subnets                 = var.subnet_blocks
   nsgs                    = local.nsg_configs  
-
 }
 
-module "networking1" {
-  source                  = "../modules/Networking"
-  resource_group_name     = var.resource_group_name
-  resource_group_location = var.resource_group_location
-  virtual_networks        = var.virtual_networks
-  subnets                 = var.subnet_blocks
-  nsgs                    = local.nsg_configs  
 
-}
 
 
 // Use the created resource group in the networking module
@@ -88,10 +79,10 @@ module "networking1" {
 # }
 
 // Pass the subnet IDs from the networking module to the virtual_machines module
-module "virtual_machines" {
-  source                  = "../modules/VirtualMachine"
-  resource_group_name     = azurerm_resource_group.resource_group.name  # Reference the resource group name here
-  resource_group_location = var.resource_group_location
-  subnet_ids              = module.networking.subnet_ids
-  nic_name                = var.nic_name
-}
+# module "virtual_machines" {
+#   source                  = "../modules/VirtualMachine"
+#   resource_group_name     = azurerm_resource_group.resource_group.name  # Reference the resource group name here
+#   resource_group_location = var.resource_group_location
+#   subnet_ids              = module.networking.subnet_ids
+#   nic_name                = var.nic_name
+# }

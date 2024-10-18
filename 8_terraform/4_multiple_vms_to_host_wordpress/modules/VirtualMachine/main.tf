@@ -2,26 +2,22 @@
 
 
 
-resource "azurerm_public_ip" "wordpress_public_ip" {
-  name                = "public_ip"
-  resource_group_name = var.resource_group_name
-  location            = var.resource_group_location
-  allocation_method   = "Static"
-}
+resource "azurerm_network_interface" "linuxvm_nic" {
+  for_each            = { for nic in var.network_interfaces : nic.name => nic } // Creating a map from the list
 
-
-resource "azurerm_network_interface" "linuxvm_nic_with_public_ip" {
-  name                = "${var.nic_name}"
+  name                = each.value.name
   resource_group_name = var.resource_group_name
   location            = var.resource_group_location
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = var.subnet_ids["0"]
+    subnet_id                     = each.value.subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.wordpress_public_ip.id
+
+    public_ip_address_id = each.value.has_public_ip ? azurerm_public_ip.wordpress_public_ip.id : null
   }
 }
+
 
 
 
