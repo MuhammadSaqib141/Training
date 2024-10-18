@@ -164,12 +164,9 @@ resource "azurerm_storage_blob" "wordpress_script_blob" {
 
 # data "azurerm_storage_account_sas" "sas_token" {
 #   connection_string = azurerm_storage_account.storage_account.primary_connection_string
-
 #   https_only = true
-
 #   start  = "2024-03-21T00:00:00Z"
 #   expiry = "2025-03-21T00:00:00Z"
-
 
 #   permissions {
 #     read    = true
@@ -196,7 +193,6 @@ resource "azurerm_storage_blob" "wordpress_script_blob" {
 #     table = false
 #     file  = false
 #   }
-
 # }
 
 
