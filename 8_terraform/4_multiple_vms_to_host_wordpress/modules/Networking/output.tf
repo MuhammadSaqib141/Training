@@ -1,17 +1,22 @@
 
 
 
-output "subnet_ids" {
+output "wordpress_subnet_id" {
   description = "The IDs of the created subnets"
-  value = {
-    for idx, subnet in azurerm_subnet.saqib_vnet_subnets : idx => subnet.id
-  }
+  value = azurerm_subnet.saqib_vnet_subnets["0"]
 }
 
-
-output "nsgs_ids" {
+output "db_subnet_id" {
   description = "The IDs of the created subnets"
-  value = {
-    for idx, nsg in azurerm_network_security_group.wordpress_nsg : idx => nsg.id
-  }
+  value = azurerm_subnet.saqib_vnet_subnets["1"]
+}
+
+output "wordpress_nsg_id" {
+  description = "The IDs of the created subnets"
+  value = azurerm_network_security_group.nsg["0"]
+}
+
+output "db_nsg_id" {
+  description = "The IDs of the created subnets"
+  value = azurerm_network_security_group.nsg["1"]
 }

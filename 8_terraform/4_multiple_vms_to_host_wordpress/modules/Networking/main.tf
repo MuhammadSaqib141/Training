@@ -25,13 +25,14 @@ resource "azurerm_subnet" "saqib_vnet_subnets" {
 
 # -------------------- NSG & Rules -------------------------------------------------!!!!
 
-resource "azurerm_network_security_group" "wordpress_nsg" {
-  name                = "example-nsg"
-  location            = "East US"
-  resource_group_name = azurerm_resource_group.example_rg.name
+resource "azurerm_network_security_group" "nsg" {
+  for_each            = { for idx, nsg in var.nsgs : idx => nsg }
+  name                = each.value.name
+  location            = var.resource_group_location
+  resource_group_name = var.resource_group_name
 
   dynamic "security_rule" {
-    for_each = var.each.rules
+    for_each = each.value.rules
     content {
       name                        = security_rule.value.name
       priority                    = security_rule.value.priority
@@ -41,14 +42,16 @@ resource "azurerm_network_security_group" "wordpress_nsg" {
       source_port_range           = security_rule.value.source_port_range
       destination_port_range      = security_rule.value.destination_port_range
       source_address_prefix       = security_rule.value.source_address_prefix
-      destination_address_prefix   = security_rule.value.destination_address_prefix
+      destination_address_prefix  = security_rule.value.destination_address_prefix
     }
   }
 }
 
 
-
-resource "azurerm_subnet_network_security_group_association" "example" {
-  subnet_id                 = azurerm_subnet.saqib_vnet_subnets
-  network_security_group_id = azurerm_network_security_group.samplensg.id
+resource "azurerm_subnet_network_security_group_association" "association" {
+  for_each = { for idx, single_ass in var.association_nsg_subnets : idx => single_ass }
+  subnet_id                 = each.value.subnet_id
+  network_security_group_id = each.value.nsg_id
 }
+
+

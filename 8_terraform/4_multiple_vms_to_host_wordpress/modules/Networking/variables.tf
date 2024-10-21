@@ -30,11 +30,12 @@ variable "subnets" {
 
 #------------- NSG & Rules Variables ------------------------
 
+
 variable "nsgs" {
-  description = "A map of NSG configurations"
-  type        = map(object({
-    name       = string
-    rules      = list(object({
+  description = "List of Network Security Groups configurations"
+  type = list(object({
+    name  = string
+    rules = map(object({
       name                        = string
       priority                    = number
       direction                   = string
@@ -45,6 +46,15 @@ variable "nsgs" {
       source_address_prefix       = string
       destination_address_prefix  = string
     }))
+  }))
+}
+
+
+variable "association_nsg_subnets" {
+  description = "value"
+  type = list(object({
+    subnet_id = string
+    nsg_id = string
   }))
 }
 
