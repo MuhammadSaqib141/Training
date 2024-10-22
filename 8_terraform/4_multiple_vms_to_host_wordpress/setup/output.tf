@@ -1,22 +1,24 @@
 
 
 
-output "wordpress_subnet_id" {
+# output "nsgs_id" {
+#   description = "The IDs of the created subnets"
+#   value = module.networking.nsg_ids
+# }
+
+
+
+# output "ids_subnets" {
+#   description = "The IDs of the created subnets"
+#   value = module.networking.subnet_ids
+# }
+
+output "Subnets" {
   description = "The IDs of the created subnets"
-  value = module.networking.wordpress_subnet_id
+  value = module.networking.subnets
 }
 
-output "wordpress_nsg_id" {
+output "Nsgs" {
   description = "The IDs of the created subnets"
-  value = module.networking.wordpress_nsg_id
-}
-
-output "db_subnet_id" {
-  description = "The IDs of the created subnets"
-  value = module.networking.db_subnet_id
-}
-
-output "db_nsg_id" {
-  description = "The IDs of the created subnets"
-  value = module.networking.db_nsg_id
+  value = module.networking.nsgs
 }

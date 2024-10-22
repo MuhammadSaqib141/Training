@@ -8,7 +8,6 @@ variable "resource_group_location" {
   type = string
 }
 
-
 variable "virtual_networks" {
   description = "The name of the resource group"
   type        = list(object({
@@ -24,13 +23,11 @@ variable "subnets" {
       name          = string
       address_prefixes = list(string)
       virtual_network_name      = string
+      nsg_to_be_associated = string
   }))
 }
 
-
 #------------- NSG & Rules Variables ------------------------
-
-
 variable "nsgs" {
   description = "List of Network Security Groups configurations"
   type = list(object({
@@ -49,12 +46,10 @@ variable "nsgs" {
   }))
 }
 
-
-variable "association_nsg_subnets" {
-  description = "value"
-  type = list(object({
-    subnet_id = string
-    nsg_id = string
-  }))
-}
-
+# variable "association_nsg_subnets" {
+#   description = "value"
+#   type = list(object({
+#     subnet_id = string
+#     nsg_id = string
+#   }))
+# }

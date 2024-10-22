@@ -10,16 +10,18 @@ virtual_networks = [
   }
 ]
 
-subnet_blocks = [
+subnets = [
   {
-    name                 = "subnet1"
-    virtual_network_name = "saqib-vnet"
-    address_prefixes     = ["10.0.1.0/24"]
+    name                  = "subnet1"
+    address_prefixes      = ["10.0.1.0/24"]
+    virtual_network_name  = "saqib-vnet"
+    nsg_to_be_associated  = "wordpress-nsg-1"
   },
   {
-    name                 = "subnet2"
-    virtual_network_name = "saqib-vnet"
-    address_prefixes     = ["10.0.2.0/24"]
+    name                  = "subnet2"
+    address_prefixes      = ["10.0.2.0/24"]
+    virtual_network_name  = "saqib-vnet"
+    nsg_to_be_associated  = "wordpress-nsg-2"
   }
 ]
 
@@ -103,12 +105,6 @@ nsgs = [
 ]
 
 
-association_nsg_subnets = [
-  {
-    subnet_id = null
-    nsg_id = null
-  }
-]
 
 
 network_interfaces = [
@@ -122,13 +118,6 @@ network_interfaces = [
     name         = "db-machine-nic"
     subnet_id    = null
     has_public_ip = false
-  }
-]
-
-association_nic_nsg = [
-  {
-    network_interface_name = null
-    network_security_group_id = null
   }
 ]
 

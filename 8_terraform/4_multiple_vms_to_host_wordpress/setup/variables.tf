@@ -17,17 +17,17 @@ variable "virtual_networks" {
   }))
 }
 
-variable "subnet_blocks" {
+variable "subnets" {
   description = "The name of the resource group"
   type        = list(object({
       name          = string
       address_prefixes = list(string)
       virtual_network_name      = string
+      nsg_to_be_associated = string
   }))
 }
 
 #------------- NSG & Rules Variables ------------------------
-
 variable "nsgs" {
   description = "List of Network Security Groups configurations"
   type = list(object({
@@ -46,13 +46,13 @@ variable "nsgs" {
   }))
 }
 
-variable "association_nsg_subnets" {
-  description = "value"
-  type = list(object({
-    subnet_id = string
-    nsg_id = string
-  }))
-}
+# variable "association_nsg_subnets" {
+#   description = "value"
+#   type = list(object({
+#     subnet_id = string
+#     nsg_id = string
+#   }))
+# }
 
 variable "network_interfaces" {
   description = "List of network interfaces to be created"
@@ -63,17 +63,13 @@ variable "network_interfaces" {
   }))
 }
 
-variable "association_nic_nsg" {
-  description = "List of mappings between network interfaces and Network Security Groups"
-  type = list(object({
-    network_interface_name = string
-    network_security_group_id = string
-  }))
-}
-
-# variables.tf
-
-# variables.tf
+# variable "association_nic_nsg" {
+#   description = "List of mappings between network interfaces and Network Security Groups"
+#   type = list(object({
+#     network_interface_name = string
+#     network_security_group_id = string
+#   }))
+# }
 
 variable "linux_vms" {
   description = "List of configurations for the Linux virtual machines."
@@ -97,4 +93,3 @@ variable "linux_vms" {
     custom_data_file                  = string
   }))
 }
-

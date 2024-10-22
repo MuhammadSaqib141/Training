@@ -9,9 +9,8 @@ module "networking" {
   resource_group_name     = var.resource_group_name
   resource_group_location = var.resource_group_location
   virtual_networks        = var.virtual_networks
-  subnets                 = var.subnet_blocks
+  subnets                 = var.subnets
   nsgs                    = var.nsgs
-  association_nsg_subnets  = local.association_nsg_subnets
   depends_on = [ azurerm_resource_group.resource_group ]
 }
 
@@ -22,5 +21,6 @@ module "virtual_machines" {
   network_interfaces = local.network_interfaces
   # association_nic_nsg = local.association_nic_nsg
   linux_vms = var.linux_vms
+  
   depends_on = [ module.networking ]
 }
