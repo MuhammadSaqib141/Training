@@ -4,13 +4,13 @@ This repository contains Terraform code for managing and provisioning infrastruc
 
 ## Overview
 
-This project provides Terraform configurations to create and manage [briefly describe the resources being provisioned, e.g., AZURE]. The configurations are modularized to allow for easy reusability and maintainability.
+This project provides Terraform configurations to create and manage Azure resources. The configurations are modularized to allow for easy reusability and maintainability.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- [Terraform](https://www.terraform.io/downloads.html) (version X.X.X or later)
+- [Terraform](https://www.terraform.io/downloads.html) (version 4.0.0)
 - A cloud provider account (e.g., AWS, GCP, Azure)
 - [Terraform CLI](https://www.terraform.io/docs/cli/index.html)
 
@@ -18,11 +18,12 @@ Before you begin, ensure you have the following installed:
 
 ```plaintext
 .
-├── main.tf           # Main Terraform configuration file
-├── variables.tf      # Variable definitions
-├── outputs.tf        # Output definitions
-├── terraform.tfvars  # Variables file with default values
-├── provider.tf       # Provider configurations
+└── setup/
+    ├── main.tf           # Main Terraform configuration file
+    ├── variables.tf      # Variable definitions
+    ├── outputs.tf        # Output definitions
+    ├── terraform.tfvars  # Variables file with default values
+    ├── provider.tf       # Provider configurations
 └── modules/          # Directory for reusable modules
     ├── module1/      # Description of module1
     │   ├── main.tf
