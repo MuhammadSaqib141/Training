@@ -12,13 +12,7 @@ resource "azurerm_network_interface" "linuxvm_nic" {
   }
 }
 
-resource "random_password" "admin_password" {
-  length  = 16
-  special = true
-  upper   = true
-  lower   = true
-  numeric  = true
-}
+
 
 resource "azurerm_linux_virtual_machine" "linux_vm" {
   name                              = var.linux_vm.name

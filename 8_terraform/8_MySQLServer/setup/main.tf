@@ -1,5 +1,3 @@
-
-
 resource "azurerm_resource_group" "resource_group" {
   name     = var.resource_group_name
   location = var.resource_group_location
@@ -34,6 +32,7 @@ module "key_vault_config" {
   key_vault_config = var.key_vault_config
   secrets = var.secrets
 }
+
 
 module "vms" {
   source = "../modules/VirtualMachine"

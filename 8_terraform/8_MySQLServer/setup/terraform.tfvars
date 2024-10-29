@@ -45,6 +45,17 @@ networking_config = {
     }
   }
 }
+mysql_config = {
+  resource_group_name     = null          # Replace with your resource group name
+  location                = null  # Replace with your preferred location
+  server_name             = "wordpress-testing-server"       # The name of your MySQL server
+  administrator_login     = "wordpress_user"                 # MySQL admin username
+  administrator_password   = "M@lik8872"                      # MySQL admin password
+  sku_name                = "B_Standard_B1s"                 # SKU for the server
+  database_name           = "wordpress_db"                   # Name of the database to create
+  charset                 = "utf8"                            # Charset for the database
+  collation               = "utf8_unicode_ci"                # Collation for the database
+}
 
 vm_configs = {
     "wordpress" = {
@@ -75,17 +86,6 @@ vm_configs = {
     }
 }
 
-mysql_config = {
-  resource_group_name     = null          # Replace with your resource group name
-  location                = null  # Replace with your preferred location
-  server_name             = "wordpress-testing-server"       # The name of your MySQL server
-  administrator_login     = "wordpress_user"                 # MySQL admin username
-  administrator_password   = "M@lik8872"                      # MySQL admin password
-  sku_name                = "B_Standard_B1s"                 # SKU for the server
-  database_name           = "wordpress_db"                   # Name of the database to create
-  charset                 = "utf8"                            # Charset for the database
-  collation               = "utf8_unicode_ci"                # Collation for the database
-}
 
 key_vault_config  = {
     name                        = "examplekeyvault-vm"  

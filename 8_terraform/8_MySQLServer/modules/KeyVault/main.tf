@@ -23,11 +23,21 @@ resource "azurerm_key_vault" "example" {
   }
 }
 
+resource "random_password" "admin_password" {
+  length  = 16
+  special = true
+  upper   = true
+  lower   = true
+  numeric  = true
+
+}
+
 resource "azurerm_key_vault_secret" "this" {
   for_each    = var.secrets
   name        = each.value.name
-  value       = each.value.value
+  value       = random_password.admin_password.result
   key_vault_id = azurerm_key_vault.example.id
+  
 }
 
 resource "time_sleep" "wait_for_secret" {
@@ -39,9 +49,6 @@ data "azurerm_key_vault_secret" "this" {
   for_each     = var.secrets
   name         = each.value.name
   key_vault_id = azurerm_key_vault.example.id
-
+  
   depends_on = [time_sleep.wait_for_secret]
 }
-
-
-
