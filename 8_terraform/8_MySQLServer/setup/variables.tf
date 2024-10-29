@@ -8,8 +8,6 @@ variable "resource_group_location" {
   type        = string
 }
 
-
-
 variable "networking_config" {
   default = {
     vnet1 = {
@@ -59,7 +57,6 @@ variable "networking_config" {
   }
 }
 
-
 variable "vm_configs" {
   description = "Map of VM and network interface configurations"
   type = map(object({
@@ -86,9 +83,9 @@ variable "vm_configs" {
     })
     subnet_id = string  
     public_ip = string   
+    network_name = string
   }))
 }
-
 
 variable "mysql_config" {
   description = "Configuration for MySQL server and database."
@@ -103,4 +100,31 @@ variable "mysql_config" {
     charset                 = string
     collation               = string
   })
+}
+
+variable "key_vault_config" {
+  type = object({
+    name                        = string
+    location                    = string
+    enabled_for_disk_encryption = bool
+    soft_delete_retention_days  = number
+    purge_protection_enabled    = bool
+    sku_name                    = string
+    access_policy = list(object({
+      tenant_id        = string
+      object_id        = string
+      key_permissions   = list(string)
+      secret_permissions = list(string)
+      storage_permissions = list(string)
+    }))
+  })
+
+
+}
+
+variable "secrets" {
+  type = map(object({
+    name  = string
+    value = string
+  }))
 }

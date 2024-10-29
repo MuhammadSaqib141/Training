@@ -35,6 +35,8 @@ Before you begin, ensure you have the following installed:
         └── outputs.tf
 ```
 
+
+
 ### File Descriptions
 
 - `main.tf`: Contains the main configuration for your infrastructure.

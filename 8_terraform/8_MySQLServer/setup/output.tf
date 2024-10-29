@@ -14,3 +14,7 @@ output "public_ips" {
   }
   description = "Public IPs created in the networking module."
 }
+
+output "mysql_hostnames" {
+  value = module.db.mysql_server_hostname
+}

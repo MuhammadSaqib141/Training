@@ -45,3 +45,32 @@ variable "linux_vm" {
     custom_data_file              = string
   })
 }
+
+variable "database_name" {
+  description = "Database name for WordPress"
+  type        = string
+  default     = "wordpress_db"
+}
+
+variable "database_user" {
+  description = "Database user for WordPress"
+  type        = string
+  default     = "wordpress_user"
+}
+
+variable "database_password" {
+  description = "Database password for WordPress"
+  type        = string
+  default     = "M@lik8872"
+}
+
+variable "database_host" {
+  description = "Database host for WordPress"
+  type        = string
+  default     = "localhost"
+}
+
+variable "secrets" {
+  type      = map(string)
+  sensitive = true
+}

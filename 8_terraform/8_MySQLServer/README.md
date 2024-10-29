@@ -1,7 +1,9 @@
 
 # Azure WordPress Hosting with MySQL Database - Modular Terraform Setup
 
-This project deploys a WordPress application on Azure using Terraform, including a MySQL database for persistent storage of content and configurations. The architecture is modular, allowing for a clear organization of networking, compute, and database resources.
+  This project deploys a WordPress application on Azure using Terraform, 
+  including a MySQL database for persistent storage of content and configurations. 
+  The architecture is modular, allowing for a clear organization of networking, compute, and database resources.
 
 ## Overview
 
@@ -121,11 +123,13 @@ Customize the deployment by modifying the variables defined in `variables.tf`. B
 
 | Variable Name                   | Description                                                        | Type   |
 |---------------------------------|--------------------------------------------------------------------|--------|
-| `resource_group_name`           | The name of the Azure resource group.                             | string |
-| `resource_group_location`       | The Azure region for resource deployment (e.g., "East US").       | string |
-| `networking_config`             | Configuration for networking resources, including virtual networks, subnets, public IPs, and NSGs. | map    |
-| `vm_configs`                    | Configuration for virtual machines, including VM details and network interface assignments. | map    |
-| `mysql_config`                  | Configuration settings for the Azure Database for MySQL.         | object |
+| `resource_group_name`           | The name of the Azure resource group.                              | string |
+| `resource_group_location`       | The Azure region for resource deployment (e.g., "East US").        | string |
+| `networking_config`             | Configuration for networking resources, including virtual networks,
+ subnets, public IPs, and NSGs.                                                                        | map    |
+| `vm_configs`                    | Configuration for virtual machines, including VM details and network interface assignments. 
+                                                                                                       | map    |
+| `mysql_config`                  | Configuration settings for the Azure Database for MySQL.           | object |
 
 ### Example of `variables.tf`
 
@@ -193,6 +197,7 @@ variable "mysql_config" {
 }
 ```
 
+
 ## Outputs
 
 After the configuration is applied, you can view output values defined in `outputs.tf`. Outputs may include:
@@ -206,10 +211,12 @@ To view the output values, run:
 terraform output
 ```
 
+
 ## Important Notes
 
 - **Security**: Ensure that your `administrator_login_password` meets Azure's complexity requirements. Avoid hardcoding sensitive information directly in your Terraform files. Consider using [Terraform Vault Provider](https://registry.terraform.io/providers/hashicorp/vault/latest/docs) for sensitive data management.
 - **Customization**: Adjust sizes, regions, and configurations as per your requirements.
+
 
 ## Troubleshooting
 
@@ -218,4 +225,3 @@ If you encounter issues, consider these steps:
 1. Review the output of the `terraform apply` command for error messages.
 2. Check if your Azure subscription has sufficient resources and permissions to create the specified resources.
 3. Consult the [Terraform Azure Provider Documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) for specific resource configuration options.
-
