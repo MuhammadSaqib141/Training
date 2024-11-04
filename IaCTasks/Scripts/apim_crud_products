@@ -1,0 +1,153 @@
+const { app } = require('@azure/functions');
+
+const products = [
+    { id: '1', name: 'Product A', price: 10.99 },
+    { id: '2', name: 'Product B', price: 15.99 },
+    { id: '3', name: 'Product C', price: 12.49 },
+    { id: '4', name: 'Product D', price: 22.00 },
+    { id: '5', name: 'Product E', price: 5.99 }
+];
+
+app.http('productRetrieveAdd', {
+    methods: ['GET', 'DELETE', 'PUT'],
+    route: 'products/{id}', 
+    authLevel: 'anonymous',
+    handler: async (request, context) => {
+        const productId = request.params.id;
+        const method = request.method;
+
+        console.log(method)
+
+        if (method === 'GET') {
+            if (productId) {
+                const product = products.find(p => p.id === productId);
+                if (product) {
+                    return {
+                        status: 200,
+                        body: JSON.stringify(product),
+                        headers: { 'Content-Type': 'application/json' }
+                    };
+                } else {
+                    return {
+                        status: 404,
+                        body: JSON.stringify({ error: 'Product not found' }),
+                        headers: { 'Content-Type': 'application/json' }
+                    };
+                }
+            }
+            return {
+                status: 200,
+                body: JSON.stringify(products),
+                headers: { 'Content-Type': 'application/json' }
+            };
+        }
+
+        if (method === 'DELETE') {
+            if (!productId) {
+                return {
+                    status: 400,
+                    body: JSON.stringify({ error: 'Product ID is required for deletion' }),
+                    headers: { 'Content-Type': 'application/json' }
+                };
+            }
+
+            const productIndex = products.findIndex(p => p.id === productId);
+            if (productIndex === -1) {
+                return {
+                    status: 404,
+                    body: JSON.stringify({ error: 'Product not found' }),
+                    headers: { 'Content-Type': 'application/json' }
+                };
+            }
+
+            products.splice(productIndex, 1);
+            return {
+                status: 200,
+                body: JSON.stringify({ message: 'Product deleted successfully' }),
+                headers: { 'Content-Type': 'application/json' }
+            };
+        }
+
+        if (method === 'PUT') {
+            if (!productId) {
+                return {
+                    status: 400,
+                    body: JSON.stringify({ error: 'Product ID is required for update' }),
+                    headers: { 'Content-Type': 'application/json' }
+                };
+            }
+
+            const { name, price } = await request.json();
+            const productIndex = products.findIndex(p => p.id === productId);
+
+            if (productIndex === -1) {
+                return {
+                    status: 404,
+                    body: JSON.stringify({ error: 'Product not found' }),
+                    headers: { 'Content-Type': 'application/json' }
+                };
+            }
+
+            if (name) products[productIndex].name = name;
+            if (price) products[productIndex].price = price;
+
+            return {
+                status: 200,
+                body: JSON.stringify(products[productIndex]),
+                headers: { 'Content-Type': 'application/json' }
+            };
+        }
+
+        return {
+            status: 405,
+            body: JSON.stringify({ error: 'Method not allowed' }),
+            headers: { 'Content-Type': 'application/json' }
+        };
+    }
+});
+
+app.http('productCreateUpdate', {
+    methods: ['POST', 'GET'],
+    route: 'products', 
+    authLevel: 'anonymous',
+    handler: async (request, context) => {
+        const method = request.method;
+        console.log(method)
+
+
+        if (method === 'POST') {
+            const { name, price } = await request.json();
+
+            if (!name || !price) {
+                return {
+                    status: 400,
+                    body: JSON.stringify({ error: 'Product name and price are required' }),
+                    headers: { 'Content-Type': 'application/json' }
+                };
+            }
+
+            const newProduct = { id: `${Date.now()}`, name, price };
+            products.push(newProduct);
+
+            return {
+                status: 201,
+                body: JSON.stringify(newProduct),
+                headers: { 'Content-Type': 'application/json' }
+            };
+        }
+
+        if (method === 'GET') {
+            return {
+                status: 200,
+                body: JSON.stringify(products),
+                headers: { 'Content-Type': 'application/json' }
+            };
+        }
+
+        return {
+            status: 405,
+            body: JSON.stringify({ error: 'Method not allowed' }),
+            headers: { 'Content-Type': 'application/json' }
+        };
+    }
+});
