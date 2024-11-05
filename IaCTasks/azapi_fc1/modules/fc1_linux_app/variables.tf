@@ -22,30 +22,14 @@ variable "enableAppInSight" {
 }
 
 
-variable "applicationInsightsName" {
-  description = "The Application Insights name."
-  type        = string
-}
 
-variable "logAnalyticsName" {
-  description = "The Log Analytics name."
-  type        = string
-}
 
 variable "functionAppName" {
   description = "The Function App name."
   type        = string
 }
 
-variable "functionPlanName" {
-  description = "The App Service plan name for the function."
-  type        = string
-}
 
-variable "storageAccountName" {
-  description = "The Storage Account name."
-  type        = string
-}
 
 variable "maximumInstanceCount" {
   description = "The maximum instance count for the app."
@@ -65,4 +49,13 @@ variable "functionAppRuntime" {
 variable "functionAppRuntimeVersion" {
   description = "The runtime version for the function app."
   type        = string
+}
+
+variable "role_assignments" {
+  description = "List of resources for which role assignments are needed"
+  type = list(object({
+    type               = string     
+    name                = string     
+    role_definition    = string     
+  }))
 }

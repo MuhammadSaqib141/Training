@@ -11,20 +11,30 @@ output "rg_map" {
   description = "Map of resource group name to resource group ID."
 }
 
+resource "azurerm_storage_account" "storageAccounttest" {
+  name                     = "msstorageaccount0101"
+  resource_group_name      = var.resourceGroupName
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+
+  depends_on = [ azurerm_resource_group.rg ]
+}
 
 
 module "function_app" {
-  source                     = "./fc1_linux_app"
+  source                     = "../modules/fc1_linux_app"
   resourceGroupName          = azurerm_resource_group.rg.name
   resourceGroupId            = azurerm_resource_group.rg.id
   location                   = azurerm_resource_group.rg.location
-  applicationInsightsName    = var.applicationInsightsName
-  logAnalyticsName           = var.logAnalyticsName
+  enableAppInSight = false
   functionAppName            = var.functionAppName
-  functionPlanName           = var.functionPlanName
-  storageAccountName         = var.storageAccountName
   maximumInstanceCount       = var.maximumInstanceCount
   instanceMemoryMB           = var.instanceMemoryMB
   functionAppRuntime         = var.functionAppRuntime
   functionAppRuntimeVersion  = var.functionAppRuntimeVersion
+  role_assignments           = var.role_assignments
+
+  depends_on = [ azurerm_storage_account.storageAccounttest ]
+  
 }

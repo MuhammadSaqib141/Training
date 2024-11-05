@@ -1,6 +1,6 @@
 variable "resourceGroupName" {
   description = "The Azure Resource Group name in which all resources in this example should be created."
-  default = "saqib-rg"
+  default = "saqib-resources"
 }
 
 variable "location" {
@@ -20,7 +20,7 @@ variable "logAnalyticsName" {
 
 variable "functionAppName" {
   description = "Your Flex Consumption app name."
-  default = "msfunctionapptest001"
+  default = "msfuncapptest001"
 }
 
 variable "functionPlanName" {
@@ -49,6 +49,23 @@ variable "functionAppRuntime" {
 }
 
 variable "functionAppRuntimeVersion" {
-  default = "17"
+  default = "11"
   description = "The runtime and version for your app. One of the following: '3.10', '3.11', '7.4', '8.0', '10', '11', '17', '20'"
+}
+
+variable "role_assignments" {
+  description = "List of resources for which role assignments are needed"
+  type = list(object({
+    type               = string     
+    name      = string     
+    role_definition    = string
+     
+  }))
+  default = [
+    {
+      type               = "storage"
+      name               = "msstorageaccount0101"
+      role_definition    = "Storage Blob Data Owner"
+    }
+  ]
 }
