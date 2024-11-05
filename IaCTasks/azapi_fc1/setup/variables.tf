@@ -66,6 +66,11 @@ variable "role_assignments" {
       type               = "storage"
       name               = "msstorageaccount0101"
       role_definition    = "Storage Blob Data Owner"
+    },
+    {
+      type               = "storage"
+      name               = "msfuncapptest001storage" //change name according to functionapp name
+      role_definition    = "Storage Blob Data Owner"
     }
   ]
 }
