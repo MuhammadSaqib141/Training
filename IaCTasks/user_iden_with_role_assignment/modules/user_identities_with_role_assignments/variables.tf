@@ -18,3 +18,4 @@ variable "role_assignments" {
         role_definition_list    = list(string)
     }))
 }
+
