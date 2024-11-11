@@ -1,7 +1,9 @@
 
 data "azurerm_resource_group" "rg" {
     name = "saqib-rg"
-}
+} 
+
+
 
 
 module "user_identities_with_role_assignments" {
