@@ -10,6 +10,8 @@ locals {
     ]
   ])
 
+
+
   resource_id_map = {
     for resource in flatten([
       for assignment in var.role_assignments : [
