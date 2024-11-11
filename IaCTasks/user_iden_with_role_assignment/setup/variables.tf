@@ -33,3 +33,4 @@ variable "managed_identities" {
     }))
   }))
 }
+
