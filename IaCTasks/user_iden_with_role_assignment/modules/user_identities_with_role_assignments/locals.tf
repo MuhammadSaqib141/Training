@@ -26,3 +26,5 @@ locals {
     ]) : resource.name => resource.id if resource.id != null
   }
 }
+
+
