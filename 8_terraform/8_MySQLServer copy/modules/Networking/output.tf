@@ -2,7 +2,7 @@
 output "subnets" {
   value = {
     for subnet_key, subnet_value in azurerm_subnet.subnet :
-        subnet_key => subnet_value.id
+    subnet_key => subnet_value.id
   }
   description = "IDs of the subnets created in the networking module."
 }
