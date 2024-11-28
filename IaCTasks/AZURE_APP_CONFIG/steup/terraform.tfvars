@@ -1,10 +1,10 @@
 
-resource_group_name    = "test-resource-group"
+resource_group_name    = "saqib-resource-group"
 resource_group_location = "North Europe"
 
 
 app_configuration = {
-  name                       = "my-app-configuration"
+  name                       = "saqib-app-configuration"
   sku                        = "free"
   # local_auth_enabled         = true
   # public_network_access      = "Enabled"
